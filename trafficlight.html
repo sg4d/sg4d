@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #traffic-light {
+      width: 100px;
+      margin: 0 auto;
+    }
+
+    .light {
+      width: 100px;
+      height: 100px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      margin: 10px 0;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+
+    .green {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="traffic-light">
+    <div class="light red"></div>
+    <div class="light yellow"></div>
+    <div class="light green"></div>
+  </div>
+
+  <script>
+    let currentColor = 'red';
+
+    function changeTrafficLight() {
+      switch (currentColor) {
+        case 'red':
+          currentColor = 'green';
+          break;
+        case 'green':
+          currentColor = 'yellow';
+          break;
+        case 'yellow':
+          currentColor = 'red';
+          break;
+        default:
+          currentColor = 'red';
+      }
+
+      
+      const lights = document.querySelectorAll('.light');
+      lights.forEach(light => light.classList.remove('red', 'yellow', 'green'));
+      lights.forEach(light => light.classList.add(currentColor));
+    }
+
+    setInterval(changeTrafficLight, 5000);
+  </script>
+</body>
+</html>
