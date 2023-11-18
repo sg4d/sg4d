@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Analyzer</title>
+</head>
+<body>
+
+  <h2>Number Analyzer</h2>
+
+  <label for="numberInput">Enter a number: </label>
+  <input type="text" id="numberInput" />
+  <button onclick="analyzeNumber()">Analyze</button>
+
+  <p id="result"></p>
+
+  <script>
+    function analyzeNumber() {
+      var inputNumber = parseInt(document.getElementById("numberInput").value);
+      var isOdd = inputNumber % 2 !== 0;
+      var isEven = !isOdd;
+      var isPrime = isPrimeNumber(inputNumber);
+
+      var oddNumbers = [];
+      var evenNumbers = [];
+
+      for (var i = 1; i <= inputNumber; i++) {
+        if (i % 2 !== 0) {
+          oddNumbers.push(i);
+        } else {
+          evenNumbers.push(i);
+        }
+      }
+
+      var resultMessage = `Number: ${inputNumber}<br>
+                           Odd Numbers: ${oddNumbers.length > 0 ? oddNumbers.join(', ') : 'No odd numbers'}<br>
+                           Even Numbers: ${evenNumbers.length > 0 ? evenNumbers.join(', ') : 'No even numbers'}<br>
+                           Is Prime: ${isPrime ? 'Yes' : 'No'}`;
+
+      document.getElementById("result").innerHTML = resultMessage;
+    }
+
+    function isPrimeNumber(num) {
+      if (num <= 1) return false;
+      for (var i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+
+</body>
+</html>
